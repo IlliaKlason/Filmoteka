@@ -1,0 +1,59 @@
+.ScrollUp {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  width: 70px;
+  height: 70px;
+  border: 0;
+  border-radius: 50%;
+  background-image: url('../../images/toTop.svg');
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #0057b8;
+  cursor: pointer;
+  z-index: 99;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 1s;
+}
+.ScrollUp:hover {
+  background-color: royalblue;
+  transform: scale(1.2);
+}
+
+/* .Scrollup {
+  width: 40px;
+  height: 40px;
+  opacity: 1;
+  background-image: url('../../images/toTop.svg');
+  background-size: cover;
+  z-index: 100;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transition-property: opacity;
+  transition-duration: 1s;
+
+  display: flex;
+  position: fixed;
+  bottom: 5px;
+  right: 10px;
+} */
+
+/* .btn-hidden {
+  opacity: 0;
+} 
+.btn-up__icon {
+  width: 40%;
+  height: 40%;
+  border-top: 3px solid rgba(46, 37, 32, 0.7);
+  border-right: 3px solid rgba(46, 37, 32, 0.7);
+  border-radius: 3px;
+  margin-bottom: 8px;
+  transform: rotate(-45deg);
+} */
