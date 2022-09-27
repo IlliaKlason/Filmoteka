@@ -33,4 +33,7 @@ export const PaginationStyled = styled(Pagination)`
   [aria-label='Go to last page']:hover {
     background-color: #ffd700;
   }
+  .MuiPagination-ul {
+    justify-content: center;
+  }
 `;

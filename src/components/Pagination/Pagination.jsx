@@ -13,6 +13,7 @@ function PaginationPage({ count, onChange, page }) {
       showFirstButton
       showLastButton
       size="large"
+      boundaryCount={0}
     />
   );
 }

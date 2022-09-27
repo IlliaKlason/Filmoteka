@@ -59,9 +59,14 @@ export const SecondTitle = styled.h2`
     }
   }
 `;
-export const Vote = styled.div`
+export const Vote = styled.p`
   margin-bottom: 30px;
   font-size: 18px;
+  color: #c3beba;
+`;
+export const VoteNoRate = styled.p`
+  margin-bottom: 30px;
+  font-size: 25px;
   color: #c3beba;
 `;
 export const Genre = styled.p`

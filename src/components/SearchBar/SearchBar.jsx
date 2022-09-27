@@ -9,6 +9,7 @@ const SearchBar = ({ onHandleSubmit }) => {
     event.preventDefault();
     if (query.trim() === '') {
       alert('Enter the title of the movie');
+      return;
     }
     onHandleSubmit(query.trim());
     setQuery('');

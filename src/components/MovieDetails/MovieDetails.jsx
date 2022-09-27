@@ -17,6 +17,7 @@ import {
   SecondTitle,
   SubTitle,
   Vote,
+  VoteNoRate,
   Wrapper,
 } from './MovieDetails.styled';
 
@@ -52,6 +53,7 @@ const MovieDetails = ({ movie, status }) => {
       return production_countries?.map(({ name }) => name + ', ');
     }
   };
+  if (vote_average === undefined) return;
   return (
     <Main>
       <Button onClick={goBack}>&larr; Back</Button>
@@ -75,9 +77,15 @@ const MovieDetails = ({ movie, status }) => {
             Original title: <em>{original_title || original_name}</em>
           </SecondTitle>
           <SubTitle>Rating</SubTitle>
-          <Vote>{vote_average && vote_average.toFixed(1)}</Vote>
+          {vote_average === 0 ? (
+            <VoteNoRate>
+              <>&#10026;</>
+            </VoteNoRate>
+          ) : (
+            <Vote>{vote_average.toFixed(1)}</Vote>
+          )}
           <SubTitle>Description</SubTitle>
-          <Vote>{overview}</Vote>
+          <Genre>{overview}</Genre>
           <SubTitle>Film genre</SubTitle>
           <Genre>{genresName()}</Genre>
           <SubTitle>Production countries</SubTitle>

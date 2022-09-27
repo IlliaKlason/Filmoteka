@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import { getMovies } from '../../TheMovieAPI';
 import STATUS from '../../helpers';
@@ -7,7 +7,6 @@ import Loader from '../../components/Loader';
 import ErrorView from '../../components/ErrorMassage';
 import SearchBar from '../../components/SearchBar';
 import defMovieImgUK from '../../images/defMovieImgUK.jpg';
-// import { Pagination } from '@mui/material';
 import PaginationPage from 'components/Pagination';
 import {
   Div,
@@ -18,26 +17,23 @@ import {
   Poster,
   Rating,
 } from '../HomePage/HomePage.styled';
-// import { style } from '@mui/system';
 
 const MoviesPage = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  // const navigate = useNavigate();
+  const [statuS, setStatuS] = useSearchParams();
+  // const location = useLocation();
   const [query, setQuery] = useState('');
   const [totalPages, setTotalPages] = useState(0);
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(STATUS.IDLE);
 
-  const page = new URLSearchParams(location.search).get('Klason') ?? 1;
+  const page = statuS.get('Klason') ?? '1';
 
   useEffect(() => {
-    if (location.search === '') {
-      return;
-    }
-    const newSearch = new URLSearchParams(location.search).get('query');
+    const newSearch = statuS.get('query');
     setQuery(newSearch, page);
-  }, [location.search, page]);
+  }, [page, statuS]);
 
   useEffect(() => {
     if (!query) return;
@@ -66,13 +62,12 @@ const MoviesPage = () => {
     setMovies(null);
     setError(null);
     setStatus(STATUS.IDLE);
-    navigate({ ...location, search: `query=${newSearch}&Klason=1` });
+    setStatuS({ query: newSearch, Klason: 1 });
   };
 
   const onHandlePage = (_, page) => {
-    navigate({ ...location, search: `query=${query}&Klason=${page}` });
+    setStatuS({ query: query, Klason: page });
   };
-  console.log(movies);
   return (
     <Main>
       <SearchBar onHandleSubmit={searchTitle} />

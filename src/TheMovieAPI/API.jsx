@@ -11,31 +11,31 @@ async function TheMovieAPIRequest(url = '', config = {}) {
 
 function getTrending(page) {
   return TheMovieAPIRequest(
-    `/trending/movie/day?api_key=${API_KEY}&language=en-US&page=${page}`
+    `/trending/movie/day?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false`
   );
 }
 
 function getMovies(query, page) {
   return TheMovieAPIRequest(
-    `/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}`
+    `/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`
   );
 }
 
 function getMovieDetails(movieId, setMovie) {
   return TheMovieAPIRequest(
-    `/movie/${movieId}?api_key=${API_KEY}&language=en-US`
+    `/movie/${movieId}?api_key=${API_KEY}&language=en-US&include_adult=false`
   );
 }
 
 function getMovieCast(movieId, setCast) {
   return TheMovieAPIRequest(
-    `/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
+    `/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US&include_adult=false`
   );
 }
 
 function getMovieReviews(movieId, setReviews) {
   return TheMovieAPIRequest(
-    `/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`
+    `/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&include_adult=false`
   );
 }
 
