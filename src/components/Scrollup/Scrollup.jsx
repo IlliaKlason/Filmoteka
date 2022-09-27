@@ -6,15 +6,13 @@ export default function ScrollUp() {
 
   useEffect(() => {
     window.onscroll = () => scrollFunction();
+    myButton.current.classList.add('visually-hidden');
 
     function scrollFunction() {
-      if (
-        document.body.scrollTop > 4 - 0 ||
-        document.documentElement.scrollTop > 40
-      ) {
-        myButton.current.classList.remove('btn-hidden');
+      if (document.documentElement.scrollTop > 140) {
+        myButton.current.classList.remove('visually-hidden');
       } else {
-        myButton.current.classList.add('btn-hidden');
+        myButton.current.classList.add('visually-hidden');
       }
     } // eslint-disable-next-line
   }, []);

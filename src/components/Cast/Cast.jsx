@@ -32,7 +32,6 @@ const Cast = () => {
         setStatus(STATUS.REJECTED);
       });
   }, [id]);
-  console.log(authors);
 
   return (
     <>

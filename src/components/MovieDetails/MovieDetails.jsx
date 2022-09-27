@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import defMovieImgUK from '../../images/defMovieImgUK.jpg';
 import Loader from '../Loader';
 import STATUS from '../../helpers/requestSTATUS';
@@ -35,9 +35,25 @@ const MovieDetails = ({ movie, status }) => {
     original_title,
     original_name,
   } = movie;
-
+  const location = useLocation();
   const navigate = useNavigate();
-  const goBack = () => navigate(-1);
+
+  if (vote_average === undefined) return;
+
+  const pathnameBase = `/movies/${id}`;
+  const pathnameCast = `/movies/${id}/cast`;
+  const pathnameReviews = `/movies/${id}/reviews`;
+  const goBack = () => {
+    if (
+      location.pathname === pathnameCast ||
+      location.pathname === pathnameReviews
+    ) {
+      navigate(pathnameBase);
+    } else if (location.pathname === pathnameBase) {
+      navigate(`/movies/`);
+    }
+  };
+
   const genresName = () => {
     if (genres?.length === 1) {
       return genres?.map(({ name }) => name);
@@ -53,7 +69,21 @@ const MovieDetails = ({ movie, status }) => {
       return production_countries?.map(({ name }) => name + ', ');
     }
   };
-  if (vote_average === undefined) return;
+
+  const changePathCast = () => {
+    if (location.pathname === pathnameCast) {
+      return pathnameBase;
+    } else {
+      return pathnameCast;
+    }
+  };
+  const changePathReviews = () => {
+    if (location.pathname === pathnameReviews) {
+      return pathnameBase;
+    } else {
+      return pathnameReviews;
+    }
+  };
   return (
     <Main>
       <Button onClick={goBack}>&larr; Back</Button>
@@ -96,10 +126,10 @@ const MovieDetails = ({ movie, status }) => {
         <AdditionalTitle>Additional information</AdditionalTitle>
         <List>
           <li>
-            <LinkItem to={`/movies/${id}/cast`}>Cast</LinkItem>
+            <LinkItem to={changePathCast()}>Cast</LinkItem>
           </li>
           <li>
-            <LinkItem to={`/movies/${id}/reviews`}>Reviews</LinkItem>
+            <LinkItem to={changePathReviews()}>Reviews</LinkItem>
           </li>
         </List>
         <Outlet />
