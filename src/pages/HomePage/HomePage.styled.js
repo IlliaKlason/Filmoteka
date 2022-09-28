@@ -27,16 +27,18 @@ export const Title = styled.h1`
 
 export const MoviesList = styled.ul`
   display: flex;
+  gap: 15px;
   justify-content: center;
   flex-wrap: wrap;
   margin: -15px;
   padding-bottom: 40px;
 `;
 export const MoviesItem = styled.li`
+  height: 100%;
+  box-shadow: 3px 3px 9px black;
   width: 294px;
   margin: 15px;
   border-radius: 20px;
-  background-color: lightgrey;
   &:hover {
     transform: scale(1.01);
     box-shadow: 0px 0px 20px 3px var(--accentColor);
