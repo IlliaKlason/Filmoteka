@@ -9,10 +9,10 @@ import ScrollUp from 'components/Scrollup/Scrollup';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <ScrollUp />
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <ScrollUp />
+    <App />
+  </BrowserRouter>
+  // </React.StrictMode>
 );

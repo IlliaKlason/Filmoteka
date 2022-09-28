@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
-export const Main = styled.ul`
+export const Main = styled.main`
   padding: 40px 0;
 `;
 export const Div = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  padding: 0 10px 0 10px;
   & > p {
     font-family: 'Bangers', sans-serif;
     color: #ffd700;
@@ -30,26 +32,27 @@ export const MoviesList = styled.ul`
   margin: -15px;
   padding-bottom: 40px;
 `;
-export const MoviesItem = styled.ul`
+export const MoviesItem = styled.li`
   width: 294px;
   margin: 15px;
-`;
-export const Poster = styled.img`
-  height: 441px;
-  border-radius: 5px;
-  overflow: hidden;
-  cursor: pointer;
-  object-fit: cover;
-  background-color: #fff;
-  transition: all 300ms var(--timingFn);
-
+  border-radius: 20px;
+  background-color: lightgrey;
   &:hover {
     transform: scale(1.01);
     box-shadow: 0px 0px 20px 3px var(--accentColor);
   }
 `;
+export const Poster = styled.img`
+  height: 441px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  object-fit: cover;
+  transition: all 300ms var(--timingFn);
+`;
 export const MovieTitle = styled.span`
   display: block;
+  flex-basis: 82%;
   margin-top: 5px;
   font-family: 'Bangers', sans-serif;
   font-size: 18px;
@@ -63,7 +66,7 @@ export const Rating = styled.p`
   font-weight: 800;
   color: #ffd700;
   background-color: #0057b8;
-  border-radius: 5px;
+  border-radius: 10px;
   min-width: 40px;
   margin: 5px auto;
 `;

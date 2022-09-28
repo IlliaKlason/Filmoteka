@@ -12,7 +12,6 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(STATUS.IDLE);
-
   useEffect(() => {
     setStatus(STATUS.PENDING);
     getMovieReviews(id)
@@ -27,21 +26,24 @@ const Reviews = () => {
       });
   }, [id]);
 
+  const reviewsMSB = reviews.filter(item => item.author !== 'MSB');
   return (
     <>
       {status === STATUS.PENDING && <Loader />}
       {status === STATUS.REJECTED && <ErrorView message={error} />}
       {status === STATUS.RESOLVED && (
         <ul>
-          {reviews.length < 1 ? (
+          {reviewsMSB.length < 1 ? (
             <p>Sorry, there are no reviews for this video</p>
           ) : (
-            reviews.map(review => (
-              <Item key={review.id}>
-                <Author>Author: {review.author}</Author>
-                <Description>{review.content}</Description>
-              </Item>
-            ))
+            reviewsMSB.map(({ id, author, content }) => {
+              return (
+                <Item key={id}>
+                  <Author>Author:{author}</Author>
+                  <Description>{content}</Description>
+                </Item>
+              );
+            })
           )}
         </ul>
       )}

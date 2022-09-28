@@ -14,7 +14,7 @@ const MovieDetailsPage = () => {
 
   useEffect(() => {
     setStatus(STATUS.PENDING);
-    getMovieDetails(id, setMovie)
+    getMovieDetails(id)
       .then(setMovie)
       .then(setStatus(STATUS.RESOLVED))
       .catch(error => {

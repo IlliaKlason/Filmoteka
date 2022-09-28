@@ -21,19 +21,19 @@ function getMovies(query, page) {
   );
 }
 
-function getMovieDetails(movieId, setMovie) {
+function getMovieDetails(movieId) {
   return TheMovieAPIRequest(
     `/movie/${movieId}?api_key=${API_KEY}&language=en-US&include_adult=false`
   );
 }
 
-function getMovieCast(movieId, setCast) {
+function getMovieCast(movieId) {
   return TheMovieAPIRequest(
     `/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US&include_adult=false`
   );
 }
 
-function getMovieReviews(movieId, setReviews) {
+function getMovieReviews(movieId) {
   return TheMovieAPIRequest(
     `/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&include_adult=false`
   );

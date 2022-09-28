@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 import { getMovies } from '../../TheMovieAPI';
 import STATUS from '../../helpers';
@@ -21,7 +21,7 @@ import {
 const MoviesPage = () => {
   // const navigate = useNavigate();
   const [statuS, setStatuS] = useSearchParams();
-  // const location = useLocation();
+  const location = useLocation();
   const [query, setQuery] = useState('');
   const [totalPages, setTotalPages] = useState(0);
   const [movies, setMovies] = useState(null);
@@ -29,7 +29,6 @@ const MoviesPage = () => {
   const [status, setStatus] = useState(STATUS.IDLE);
 
   const page = statuS.get('Klason') ?? '1';
-
   useEffect(() => {
     const newSearch = statuS.get('query');
     setQuery(newSearch, page);
@@ -86,8 +85,8 @@ const MoviesPage = () => {
                 vote_average,
                 release_date,
               }) => (
-                <MoviesItem key={id}>
-                  <Link to={`/movies/${id}`}>
+                <Link to={`/movies/${id}`} state={{ from: location }}>
+                  <MoviesItem key={id}>
                     <Poster
                       src={
                         poster_path
@@ -97,23 +96,24 @@ const MoviesPage = () => {
                       }
                       alt={title || name}
                     />
-                  </Link>
-                  <Div>
-                    {title ? (
-                      <MovieTitle>{title}</MovieTitle>
-                    ) : (
-                      <MovieTitle>{name}</MovieTitle>
-                    )}
-                    <p>{release_date && release_date.slice(0, 4)}</p>
-                  </Div>
-                  <Rating>
-                    {vote_average === 0 ? (
-                      <>&#10026;</>
-                    ) : (
-                      vote_average.toFixed(1)
-                    )}
-                  </Rating>
-                </MoviesItem>
+
+                    <Div>
+                      {title ? (
+                        <MovieTitle>{title}</MovieTitle>
+                      ) : (
+                        <MovieTitle>{name}</MovieTitle>
+                      )}
+                      <p>{release_date && release_date.slice(0, 4)}</p>
+                      <Rating>
+                        {vote_average === 0 ? (
+                          <>&#10026;</>
+                        ) : (
+                          vote_average.toFixed(1)
+                        )}
+                      </Rating>
+                    </Div>
+                  </MoviesItem>
+                </Link>
               )
             )}
           </MoviesList>

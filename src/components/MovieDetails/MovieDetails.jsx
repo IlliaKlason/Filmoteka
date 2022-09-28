@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import defMovieImgUK from '../../images/defMovieImgUK.jpg';
 import Loader from '../Loader';
 import STATUS from '../../helpers/requestSTATUS';
@@ -17,7 +17,6 @@ import {
   SecondTitle,
   SubTitle,
   Vote,
-  VoteNoRate,
   Wrapper,
 } from './MovieDetails.styled';
 
@@ -36,23 +35,12 @@ const MovieDetails = ({ movie, status }) => {
     original_name,
   } = movie;
   const location = useLocation();
-  const navigate = useNavigate();
 
   if (vote_average === undefined) return;
 
   const pathnameBase = `/movies/${id}`;
   const pathnameCast = `/movies/${id}/cast`;
   const pathnameReviews = `/movies/${id}/reviews`;
-  const goBack = () => {
-    if (
-      location.pathname === pathnameCast ||
-      location.pathname === pathnameReviews
-    ) {
-      navigate(pathnameBase);
-    } else if (location.pathname === pathnameBase) {
-      navigate(`/movies/`);
-    }
-  };
 
   const genresName = () => {
     if (genres?.length === 1) {
@@ -84,9 +72,10 @@ const MovieDetails = ({ movie, status }) => {
       return pathnameReviews;
     }
   };
+
   return (
     <Main>
-      <Button onClick={goBack}>&larr; Back</Button>
+      <Button to={location?.state?.from ?? '/'}>&larr; Back</Button>
 
       {status === STATUS.PENDING && <Loader />}
 
@@ -99,7 +88,6 @@ const MovieDetails = ({ movie, status }) => {
         ) : (
           <Img src={`${defMovieImgUK}`} alt="Poster" />
         )}
-
         <Description>
           <MainTitle>Title: {title}</MainTitle>
           <SecondTitle>Release date: {release_date}</SecondTitle>
@@ -107,13 +95,9 @@ const MovieDetails = ({ movie, status }) => {
             Original title: <em>{original_title || original_name}</em>
           </SecondTitle>
           <SubTitle>Rating</SubTitle>
-          {vote_average === 0 ? (
-            <VoteNoRate>
-              <>&#10026;</>
-            </VoteNoRate>
-          ) : (
-            <Vote>{vote_average.toFixed(1)}</Vote>
-          )}
+          <Vote>
+            {vote_average === 0 ? <>&#10026;</> : vote_average.toFixed(1)}
+          </Vote>
           <SubTitle>Description</SubTitle>
           <Genre>{overview}</Genre>
           <SubTitle>Film genre</SubTitle>
@@ -126,10 +110,20 @@ const MovieDetails = ({ movie, status }) => {
         <AdditionalTitle>Additional information</AdditionalTitle>
         <List>
           <li>
-            <LinkItem to={changePathCast()}>Cast</LinkItem>
+            <LinkItem
+              to={changePathCast()}
+              state={{ from: location.state?.from }}
+            >
+              Cast
+            </LinkItem>
           </li>
           <li>
-            <LinkItem to={changePathReviews()}>Reviews</LinkItem>
+            <LinkItem
+              to={changePathReviews()}
+              state={{ from: location.state?.from }}
+            >
+              Reviews
+            </LinkItem>
           </li>
         </List>
         <Outlet />

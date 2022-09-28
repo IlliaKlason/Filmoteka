@@ -10,9 +10,14 @@ export const Author = styled.h3`
   font-family: 'Bangers', sans-serif;
   font-size: 18px;
   letter-spacing: 0.2em;
-  color: var(--accentColor);
+  color: #ffd700;
 `;
+
 export const Description = styled.p`
+  max-width: 1500px;
+  padding: 10px;
+  margin: auto;
+  border: 2px dashed #0057b8;
   text-align: justify;
   font-family: 'Lobster Two', sans-serif;
   letter-spacing: 0.1em;

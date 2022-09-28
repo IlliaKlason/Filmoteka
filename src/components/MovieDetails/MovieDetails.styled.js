@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Main = styled.main`
@@ -31,7 +31,7 @@ export const Description = styled.div`
 `;
 export const MainTitle = styled.h1`
   margin-bottom: 20px;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 30px;
   line-height: 1.1667;
   letter-spacing: 0.03em;
@@ -60,14 +60,15 @@ export const SecondTitle = styled.h2`
   }
 `;
 export const Vote = styled.p`
+  display: inline-block;
+  text-align: center;
+  min-width: 40px;
   margin-bottom: 30px;
+  font-weight: 800;
   font-size: 18px;
-  color: #c3beba;
-`;
-export const VoteNoRate = styled.p`
-  margin-bottom: 30px;
-  font-size: 25px;
-  color: #c3beba;
+  border-radius: 10px;
+  color: #ffd700;
+  background-color: #0057b8;
 `;
 export const Genre = styled.p`
   margin-bottom: 30px;
@@ -120,8 +121,8 @@ export const LinkItem = styled(Link)`
     color: #0057b8;
   }
 `;
-export const Button = styled.button`
-  height: 47px;
+export const Button = styled(NavLink)`
+  display: inline-block;
   margin-bottom: 20px;
   padding: 10px 20px;
   background-color: #0057b8;
@@ -131,10 +132,10 @@ export const Button = styled.button`
   opacity: 1;
   transition: opacity 250ms var(--timingFn);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
   color: #ffd700;
-  font-weight: 500;
   font-size: 20px;
+  font-weight: 800;
   &:hover,
   &:focus {
     opacity: 0.8;
