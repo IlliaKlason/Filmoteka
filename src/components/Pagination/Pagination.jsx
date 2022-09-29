@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Pagination } from '@mui/material';
 import { PaginationStyled } from './Pagination.styled';
 
 function PaginationPage({ count, onChange, page }) {

@@ -75,7 +75,7 @@ const MovieDetails = ({ movie, status }) => {
 
   return (
     <Main>
-      <Button to={location?.state?.from ?? '/'}>&larr; Back</Button>
+      <Button to={location.state?.from ?? '/'}>&larr; Back</Button>
 
       {status === STATUS.PENDING && <Loader />}
 

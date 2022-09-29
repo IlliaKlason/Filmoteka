@@ -73,7 +73,8 @@ export const Vote = styled.p`
 export const Genre = styled.p`
   margin-bottom: 30px;
   font-size: 18px;
-  color: #c3beba;
+  color: white;
+  text-shadow: var(--textShadow);
   display: flex;
   align-items: center;
 `;
@@ -140,4 +141,7 @@ export const Button = styled(NavLink)`
   &:focus {
     opacity: 0.8;
   }
+`;
+export const ReadMoreDiv = styled.div`
+  border: 2px dashed #0057b8;
 `;
