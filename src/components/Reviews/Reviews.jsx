@@ -35,15 +35,17 @@ const Reviews = () => {
 
   const reviewsMSB = reviews.filter(item => item.author !== 'MSB');
   function readMoreMaker(content) {
-    let prikol;
-    let prikolEnd;
-    let prikolStr;
+    let contentReviews;
+    let contentReviewsEnd;
+    let contentReviewsStart;
     if (content.length > 1000) {
-      prikol = content.split(' ');
-      prikolEnd = prikol.splice(0, prikol.length / 2).join(' ');
-      prikolStr = prikol.join(' ');
+      contentReviews = content.split(' ');
+      contentReviewsEnd = contentReviews
+        .splice(0, contentReviews.length / 2)
+        .join(' ');
+      contentReviewsStart = contentReviews.join(' ');
     }
-    return [prikolEnd, prikolStr];
+    return [contentReviewsEnd, contentReviewsStart];
   }
   return (
     <>
