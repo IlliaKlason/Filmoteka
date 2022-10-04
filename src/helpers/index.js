@@ -1,1 +1,1 @@
-export { default } from './requestSTATUS'
+export { default } from './requestSTATUS';

@@ -67,8 +67,8 @@ const HomePage = () => {
                 poster_path,
                 release_date,
               }) => (
-                <Link to={`/movies/${id}`} state={{ from: location }}>
-                  <MoviesItem key={id}>
+                <Link to={`/movies/${id}`} state={{ from: location }} key={id}>
+                  <MoviesItem>
                     <Poster
                       src={
                         poster_path

@@ -3,6 +3,7 @@ import s from './ScrollUp.module.css';
 
 export default function ScrollUp() {
   const myButton = useRef(null);
+  // const myButton = createRef()
 
   useEffect(() => {
     window.onscroll = () => scrollFunction();
